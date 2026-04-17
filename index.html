@@ -3,21 +3,24 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Smart Tourism Hub Beta</title>
+  <title>Smart Tourism Hub App</title>
   <style>
     :root {
-      --bg: #f6f1ef;
-      --panel: #ffffff;
-      --soft: #f2dddd;
-      --soft-2: #e9d9d4;
-      --text: #3f3734;
-      --muted: #746865;
-      --accent: #7d5a50;
-      --accent-2: #b57f72;
-      --ok: #2e8b57;
-      --border: #ddcfca;
-      --shadow: 0 10px 30px rgba(80, 60, 52, 0.12);
-      --radius: 20px;
+      --bg: #efe7e3;
+      --panel: #fffaf8;
+      --soft: #f4dfdb;
+      --soft-2: #ead5cf;
+      --text: #403735;
+      --muted: #7a6e69;
+      --accent: #7a5b53;
+      --accent-2: #ad7f74;
+      --border: #dccbc5;
+      --ok: #2f8a5a;
+      --danger: #b14e4e;
+      --shadow: 0 12px 32px rgba(73, 53, 46, 0.14);
+      --radius-xl: 28px;
+      --radius-lg: 20px;
+      --radius-md: 14px;
     }
 
     * {
@@ -27,193 +30,217 @@
     body {
       margin: 0;
       font-family: Arial, Helvetica, sans-serif;
-      background: linear-gradient(180deg, #ece4e1 0%, var(--bg) 100%);
+      background: linear-gradient(180deg, #e7ddda 0%, var(--bg) 100%);
       color: var(--text);
     }
 
-    .app {
-      max-width: 1280px;
+    .phone-shell {
+      width: min(430px, 100vw);
+      min-height: 100vh;
       margin: 0 auto;
-      padding: 24px;
+      background: var(--panel);
+      box-shadow: 0 0 0 1px rgba(0,0,0,0.04), 0 20px 60px rgba(0,0,0,0.12);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .screen {
+      display: none;
+      min-height: 100vh;
+      padding: 22px 18px 94px;
+      animation: fade 0.22s ease;
+    }
+
+    .screen.active {
+      display: block;
+    }
+
+    @keyframes fade {
+      from { opacity: 0; transform: translateY(8px); }
+      to { opacity: 1; transform: translateY(0); }
     }
 
     .hero {
-      display: grid;
-      grid-template-columns: 1.2fr 0.8fr;
-      gap: 20px;
-      align-items: stretch;
-      margin-bottom: 24px;
-    }
-
-    .hero-card,
-    .card {
-      background: rgba(255,255,255,0.88);
+      background: linear-gradient(135deg, #f5dfdb 0%, #efe5df 55%, #e4d7d3 100%);
       border: 1px solid var(--border);
-      border-radius: var(--radius);
+      border-radius: var(--radius-xl);
       box-shadow: var(--shadow);
+      padding: 20px;
+      margin-bottom: 16px;
     }
 
-    .hero-card {
-      padding: 28px;
+    .top-row,
+    .split,
+    .row {
       display: flex;
-      flex-direction: column;
+      gap: 12px;
+      align-items: center;
+    }
+
+    .split {
       justify-content: space-between;
-      min-height: 280px;
+    }
+
+    .emoji {
+      width: 58px;
+      height: 58px;
+      border-radius: 18px;
+      display: grid;
+      place-items: center;
+      font-size: 30px;
+      background: rgba(255,255,255,0.55);
+    }
+
+    h1, h2, h3, p {
+      margin: 0;
+    }
+
+    h1 {
+      font-size: 2rem;
+      line-height: 0.95;
+      margin-top: 10px;
+      letter-spacing: 0.2px;
+    }
+
+    h2 {
+      font-size: 1.35rem;
+      margin-bottom: 12px;
+    }
+
+    h3 {
+      font-size: 1rem;
+      margin-bottom: 8px;
+    }
+
+    .muted {
+      color: var(--muted);
+      line-height: 1.5;
+    }
+
+    .tiny {
+      font-size: 0.87rem;
     }
 
     .badge {
       display: inline-flex;
       align-items: center;
-      gap: 8px;
-      background: var(--soft);
-      padding: 10px 14px;
+      gap: 6px;
+      background: rgba(255,255,255,0.7);
+      border: 1px solid var(--border);
+      padding: 8px 12px;
       border-radius: 999px;
-      font-size: 14px;
+      font-size: 0.82rem;
       font-weight: 700;
-      width: fit-content;
     }
 
-    h1 {
-      font-size: clamp(2rem, 4vw, 4rem);
-      line-height: 0.95;
-      margin: 14px 0;
-      letter-spacing: 0.5px;
+    .card {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 16px;
+      box-shadow: var(--shadow);
+      margin-bottom: 14px;
     }
 
-    .subtext {
-      color: var(--muted);
-      font-size: 1rem;
-      max-width: 700px;
-      line-height: 1.6;
-    }
-
-    .quick-info {
-      display: flex;
-      flex-wrap: wrap;
+    .grid-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
       gap: 12px;
-      margin-top: 18px;
     }
 
-    .pill {
-      padding: 10px 14px;
-      border-radius: 999px;
-      background: var(--soft-2);
+    .menu-btn,
+    .action-btn,
+    .tab-btn,
+    .nav-btn {
+      border: none;
+      cursor: pointer;
+      font: inherit;
+      transition: 0.15s ease;
+    }
+
+    .menu-btn,
+    .action-btn {
+      width: 100%;
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 16px 14px;
+      text-align: left;
+      box-shadow: var(--shadow);
       color: var(--text);
-      font-size: 14px;
+    }
+
+    .menu-btn:hover,
+    .action-btn:hover,
+    .tab-btn:hover,
+    .nav-btn:hover {
+      transform: translateY(-1px);
+    }
+
+    .menu-btn strong,
+    .action-btn strong {
+      display: block;
+      margin-bottom: 4px;
+    }
+
+    .primary {
+      background: var(--accent);
+      color: white;
+      border: none;
+    }
+
+    .secondary {
+      background: #fff;
+      color: var(--accent);
+      border: 1px solid var(--border);
+    }
+
+    .tab-row {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 14px;
+    }
+
+    .tab-btn {
+      flex: 1;
+      padding: 12px;
+      border-radius: 14px;
+      background: #fff;
+      color: var(--accent);
+      border: 1px solid var(--border);
       font-weight: 700;
     }
 
-    .login-card {
-      padding: 24px;
-      display: flex;
-      flex-direction: column;
-      gap: 14px;
-      justify-content: center;
-    }
-
-    .login-card h2 {
-      margin: 0;
-      font-size: 1.5rem;
-    }
-
-    .input,
-    select,
-    textarea,
-    button {
-      font: inherit;
+    .tab-btn.active {
+      background: var(--accent-2);
+      color: white;
+      border-color: transparent;
     }
 
     .input,
     select,
     textarea {
       width: 100%;
-      padding: 12px 14px;
       border: 1px solid var(--border);
+      background: white;
       border-radius: 14px;
-      background: #fff;
+      padding: 12px 13px;
+      font: inherit;
       color: var(--text);
-    }
-
-    button {
-      border: none;
-      padding: 12px 16px;
-      border-radius: 14px;
-      background: var(--accent);
-      color: white;
-      font-weight: 700;
-      cursor: pointer;
-      transition: transform 0.15s ease, opacity 0.15s ease;
-    }
-
-    button:hover {
-      opacity: 0.95;
-      transform: translateY(-1px);
-    }
-
-    .ghost {
-      background: #fff;
-      color: var(--accent);
-      border: 1px solid var(--border);
-    }
-
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(12, 1fr);
-      gap: 20px;
-    }
-
-    .card {
-      padding: 22px;
-    }
-
-    .col-4 { grid-column: span 4; }
-    .col-5 { grid-column: span 5; }
-    .col-6 { grid-column: span 6; }
-    .col-7 { grid-column: span 7; }
-    .col-8 { grid-column: span 8; }
-    .col-12 { grid-column: span 12; }
-
-    .section-title {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 12px;
-      margin-bottom: 16px;
-    }
-
-    .section-title h3 {
-      margin: 0;
-      font-size: 1.25rem;
-    }
-
-    .muted {
-      color: var(--muted);
-      font-size: 0.95rem;
-    }
-
-    .mode-buttons,
-    .action-row {
-      display: flex;
-      gap: 10px;
-      flex-wrap: wrap;
-    }
-
-    .mode-btn.active {
-      background: var(--accent-2);
-      color: white;
+      margin-bottom: 10px;
     }
 
     .map-box {
-      background: linear-gradient(180deg, #f7efea 0%, #f0e0da 100%);
-      border: 1px dashed #b89d93;
+      background: linear-gradient(180deg, #f8efe8 0%, #efe0d9 100%);
       border-radius: 18px;
-      min-height: 320px;
-      padding: 18px;
+      border: 1px dashed #c49b8f;
+      min-height: 280px;
       position: relative;
       overflow: hidden;
+      padding: 14px;
     }
 
-    .map-path {
+    .map-svg {
       position: absolute;
       inset: 0;
       width: 100%;
@@ -221,157 +248,137 @@
       pointer-events: none;
     }
 
-    .map-stop {
+    .stop {
       position: absolute;
       transform: translate(-50%, -50%);
-      background: white;
+      background: #fff;
       border: 2px solid var(--accent-2);
       border-radius: 999px;
       padding: 8px 10px;
-      font-size: 12px;
+      font-size: 0.72rem;
       font-weight: 700;
-      box-shadow: 0 6px 16px rgba(0,0,0,0.08);
-    }
-
-    .mini-list {
-      display: grid;
-      gap: 12px;
-    }
-
-    .list-item {
-      border: 1px solid var(--border);
-      background: #fff;
-      border-radius: 16px;
-      padding: 14px;
-    }
-
-    .queue-number {
-      font-size: 3rem;
-      font-weight: 800;
-      margin: 8px 0 0;
-    }
-
-    .stamp-grid,
-    .review-list {
-      display: grid;
-      gap: 12px;
+      box-shadow: 0 8px 18px rgba(0,0,0,0.08);
     }
 
     .stamp-grid {
+      display: grid;
       grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+      margin-top: 10px;
     }
 
     .stamp {
       aspect-ratio: 1;
-      border-radius: 18px;
+      border-radius: 16px;
       border: 2px dashed var(--border);
       display: grid;
       place-items: center;
+      font-size: 0.86rem;
       font-weight: 700;
-      color: var(--muted);
       background: #fff;
+      color: var(--muted);
     }
 
     .stamp.unlocked {
-      border-style: solid;
-      border-color: #d5a48f;
-      background: #fff3ee;
+      background: #fff1eb;
+      border-color: #d69c88;
       color: var(--accent);
+      border-style: solid;
+    }
+
+    .queue-box {
+      text-align: center;
+      padding: 20px;
+      border-radius: 22px;
+      background: linear-gradient(180deg, #fff7f4 0%, #f5e4de 100%);
+      border: 1px solid var(--border);
+    }
+
+    .queue-number {
+      font-size: 3.1rem;
+      font-weight: 800;
+      margin: 6px 0;
     }
 
     .review {
       border: 1px solid var(--border);
       border-radius: 16px;
-      padding: 14px;
-      background: #fff;
+      padding: 13px;
+      margin-bottom: 10px;
+      background: white;
     }
 
     .stars {
+      color: #c78532;
+      margin-bottom: 6px;
       letter-spacing: 2px;
-      color: #d08d3c;
-      margin-bottom: 8px;
     }
 
-    .lang-note,
     .status {
       font-size: 0.92rem;
       color: var(--muted);
+      margin-top: 6px;
     }
 
-    .status.ok {
-      color: var(--ok);
-      font-weight: 700;
+    .status.ok { color: var(--ok); font-weight: 700; }
+    .status.error { color: var(--danger); font-weight: 700; }
+
+    .bottom-nav {
+      position: fixed;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: min(430px, 100vw);
+      background: rgba(255,250,248,0.96);
+      backdrop-filter: blur(10px);
+      border-top: 1px solid var(--border);
+      padding: 10px 12px 14px;
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 8px;
+      z-index: 10;
     }
 
-    .footer {
-      margin-top: 20px;
-      text-align: center;
+    .nav-btn {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 10px 6px;
+      font-size: 0.75rem;
       color: var(--muted);
-      font-size: 0.9rem;
-      padding-bottom: 18px;
+      text-align: center;
     }
 
-    @media (max-width: 980px) {
-      .hero,
-      .grid {
-        grid-template-columns: 1fr;
-      }
-
-      .col-4,
-      .col-5,
-      .col-6,
-      .col-7,
-      .col-8,
-      .col-12 {
-        grid-column: auto;
-      }
-
-      .stamp-grid {
-        grid-template-columns: repeat(2, 1fr);
-      }
+    .nav-btn.active {
+      background: var(--accent);
+      color: white;
+      border-color: transparent;
     }
 
-    @media (max-width: 640px) {
-      .app {
-        padding: 14px;
-      }
-
-      .hero-card,
-      .login-card,
-      .card {
-        padding: 18px;
-      }
-
-      .stamp-grid {
-        grid-template-columns: 1fr 1fr;
-      }
+    .hidden {
+      display: none !important;
     }
   </style>
 </head>
 <body>
-  <div class="app">
-    <section class="hero">
-      <div class="hero-card">
-        <div>
-          <div class="badge">📱 Beta Prototype</div>
-          <h1>Smart Tourism Hub</h1>
-          <p class="subtext">
-            A simple beta web app for Kampung Sungai Melayu that helps visitors log in,
-            choose a travel mode, explore the area, join a photo hunt, book buggy rides,
-            view booth information, collect stamps, and leave reviews.
-          </p>
+  <div class="phone-shell">
+
+    <section class="screen active" id="screen-login">
+      <div class="hero">
+        <div class="top-row">
+          <div class="emoji">📱</div>
+          <div>
+            <div class="badge">beta app prototype</div>
+            <h1>Smart Tourism Hub</h1>
+          </div>
         </div>
-        <div class="quick-info">
-          <div class="pill">Multi-language login</div>
-          <div class="pill">Walking / Buggy modes</div>
-          <div class="pill">Interactive route map</div>
-          <div class="pill">Photo hunt</div>
-          <div class="pill">Reviews + stamps</div>
-        </div>
+        <p class="muted" style="margin-top: 14px;">
+          Explore Kampung Sungai Melayu through a simple mobile-style tourism app with routes, buggy booking, photo hunt, reviews, and stamps.
+        </p>
       </div>
 
-      <div class="hero-card login-card">
-        <h2>Login</h2>
+      <div class="card">
+        <h2>Sign in</h2>
         <input id="nameInput" class="input" type="text" placeholder="Enter your name" />
         <select id="languageSelect">
           <option value="English">English</option>
@@ -379,68 +386,140 @@
           <option value="中文">中文</option>
           <option value="தமிழ்">தமிழ்</option>
         </select>
-        <input id="otpInput" class="input" type="text" placeholder="Enter OTP (try: 123456)" />
-        <div class="action-row">
-          <button id="loginBtn">Sign in</button>
-          <button class="ghost" id="guestBtn">Continue as Guest</button>
-        </div>
-        <div id="loginStatus" class="lang-note">Choose a language and sign in to start.</div>
+        <input id="otpInput" class="input" type="text" placeholder="Enter OTP (demo: 123456)" />
+        <button class="action-btn primary" id="loginBtn"><strong>Login</strong><span class="tiny">Use OTP demo to enter the app</span></button>
+        <button class="action-btn secondary" id="guestBtn" style="margin-top: 10px;"><strong>Continue as guest</strong><span class="tiny">Skip login for prototype testing</span></button>
+        <div id="loginStatus" class="status">Choose your language and continue.</div>
       </div>
     </section>
 
-    <section class="grid">
-      <div class="card col-4">
-        <div class="section-title">
-          <h3>Travel Mode</h3>
-          <span class="muted">Pick your route style</span>
+    <section class="screen" id="screen-home">
+      <div class="hero">
+        <div class="split">
+          <div>
+            <div class="badge">welcome back</div>
+            <h2 id="welcomeTitle" style="font-size: 1.8rem; margin-top: 10px;">Hello, Explorer</h2>
+            <p class="muted tiny" id="welcomeSubtitle" style="margin-top: 8px;">Language: English</p>
+          </div>
+          <div class="emoji">🧭</div>
         </div>
-        <div class="mode-buttons">
-          <button class="mode-btn active" data-mode="Walking">🚶 Walking</button>
-          <button class="mode-btn ghost" data-mode="Buggy">🚜 Buggy</button>
+      </div>
+
+      <div class="grid-2">
+        <button class="menu-btn" data-target="screen-routes">
+          <strong>Routes</strong>
+          <span class="tiny muted">Walking / buggy paths</span>
+        </button>
+        <button class="menu-btn" data-target="screen-photohunt">
+          <strong>Photo Hunt</strong>
+          <span class="tiny muted">Submit checkpoint photos</span>
+        </button>
+        <button class="menu-btn" data-target="screen-booking">
+          <strong>Buggy Booking</strong>
+          <span class="tiny muted">Book your slot</span>
+        </button>
+        <button class="menu-btn" data-target="screen-stamps">
+          <strong>Stamps</strong>
+          <span class="tiny muted">View progress history</span>
+        </button>
+        <button class="menu-btn" data-target="screen-booths">
+          <strong>Booths</strong>
+          <span class="tiny muted">See booth information</span>
+        </button>
+        <button class="menu-btn" data-target="screen-reviews">
+          <strong>Reviews</strong>
+          <span class="tiny muted">Read and share feedback</span>
+        </button>
+      </div>
+    </section>
+
+    <section class="screen" id="screen-routes">
+      <div class="card">
+        <div class="split">
+          <div>
+            <h2>Route Selection</h2>
+            <p class="muted tiny" id="routeLabel">Current mode: Walking</p>
+          </div>
+          <div class="emoji">🗺️</div>
         </div>
-        <p id="modeDescription" class="muted" style="margin-top: 14px; line-height: 1.6;">
-          Walking mode lets visitors explore freely and stop at checkpoints at their own pace.
+        <div class="tab-row" style="margin-top: 12px;">
+          <button class="tab-btn active" data-mode="Walking">Walking</button>
+          <button class="tab-btn" data-mode="Buggy">Buggy</button>
+        </div>
+        <p id="modeDescription" class="muted" style="margin-bottom: 14px;">
+          Walking mode lets tourists move independently and explore checkpoints at their own pace.
         </p>
-      </div>
-
-      <div class="card col-8">
-        <div class="section-title">
-          <h3>Interactive Map</h3>
-          <span class="muted" id="routeLabel">Current route: Walking</span>
-        </div>
         <div class="map-box">
-          <svg class="map-path" viewBox="0 0 100 100" preserveAspectRatio="none">
-            <path id="routePath" d="M10,85 C18,70 28,62 35,58 C48,50 44,35 60,30 C74,26 80,16 90,12" fill="none" stroke="#7d5a50" stroke-width="2.2" stroke-linecap="round" stroke-dasharray="4 4"></path>
+          <svg class="map-svg" viewBox="0 0 100 100" preserveAspectRatio="none">
+            <path id="routePath" d="M10,84 C18,72 24,66 34,58 C45,49 46,38 58,31 C70,25 80,18 90,12" fill="none" stroke="#7a5b53" stroke-width="2.4" stroke-linecap="round" stroke-dasharray="5 4"></path>
           </svg>
-
-          <div class="map-stop" style="top: 83%; left: 12%;">Start</div>
-          <div class="map-stop" style="top: 62%; left: 32%;">Mangrove</div>
-          <div class="map-stop" style="top: 49%; left: 48%;">Food Booth</div>
-          <div class="map-stop" style="top: 28%; left: 63%;">Heritage Spot</div>
-          <div class="map-stop" style="top: 13%; left: 88%;">Finish</div>
+          <div class="stop" style="top: 84%; left: 12%;">Start</div>
+          <div class="stop" style="top: 61%; left: 31%;">Village Gate</div>
+          <div class="stop" style="top: 48%; left: 48%;">Food Booth</div>
+          <div class="stop" style="top: 29%; left: 67%;">Heritage</div>
+          <div class="stop" style="top: 14%; left: 88%;">Finish</div>
         </div>
       </div>
+    </section>
 
-      <div class="card col-5">
-        <div class="section-title">
-          <h3>Photo Hunt Mode</h3>
-          <span class="muted">AI verified concept demo</span>
+    <section class="screen" id="screen-photohunt">
+      <div class="card">
+        <div class="split">
+          <div>
+            <h2>Photo Hunt</h2>
+            <p class="muted tiny">Upload a checkpoint image</p>
+          </div>
+          <div class="emoji">📸</div>
         </div>
-        <p class="muted" style="line-height: 1.6;">
-          Upload a photo for your checkpoint challenge. In a real version, AI would verify whether the submitted image matches the required object or location.
+        <p class="muted" style="margin: 8px 0 12px;">
+          For the beta, the AI verification is simulated. In the actual build, this would compare uploads against checkpoint criteria.
         </p>
         <input id="photoInput" type="file" class="input" accept="image/*" />
-        <div class="action-row" style="margin-top: 12px;">
-          <button id="verifyPhotoBtn">Verify Photo</button>
-          <button class="ghost" id="unlockStampBtn">Unlock Stamp</button>
-        </div>
-        <div id="photoStatus" class="status" style="margin-top: 12px;">No photo submitted yet.</div>
+        <button class="action-btn primary" id="verifyPhotoBtn"><strong>Verify photo</strong><span class="tiny">Simulate AI image check</span></button>
+        <button class="action-btn secondary" id="unlockStampBtn" style="margin-top: 10px;"><strong>Claim stamp</strong><span class="tiny">Unlock one more stamp for demo</span></button>
+        <div id="photoStatus" class="status">No photo uploaded yet.</div>
       </div>
+    </section>
 
-      <div class="card col-7">
-        <div class="section-title">
-          <h3>Stamp Preview & History</h3>
-          <span class="muted">Progress tracker</span>
+    <section class="screen" id="screen-booking">
+      <div class="card">
+        <div class="split">
+          <div>
+            <h2>Buggy Booking</h2>
+            <p class="muted tiny">Reserve a guided ride</p>
+          </div>
+          <div class="emoji">🚜</div>
+        </div>
+        <div class="card" style="margin: 12px 0 10px; box-shadow: none;">
+          <h3>Available slot</h3>
+          <p class="muted tiny">2:30 PM · Estimated duration: 15 mins · 4 seats left</p>
+        </div>
+        <input id="bookingName" class="input" type="text" placeholder="Passenger name" />
+        <select id="bookingPax">
+          <option value="1">1 passenger</option>
+          <option value="2">2 passengers</option>
+          <option value="3">3 passengers</option>
+          <option value="4">4 passengers</option>
+        </select>
+        <button class="action-btn primary" id="bookBuggyBtn"><strong>Book buggy ride</strong><span class="tiny">Save your booking for the next slot</span></button>
+        <div id="bookingStatus" class="status">No booking made yet.</div>
+
+        <div class="queue-box" style="margin-top: 14px;">
+          <div class="tiny muted">Queue number</div>
+          <div class="queue-number" id="queueNumber">089</div>
+          <button class="action-btn secondary" id="queueBtn"><strong>Get queue number</strong><span class="tiny">Generate next queue ticket</span></button>
+        </div>
+      </div>
+    </section>
+
+    <section class="screen" id="screen-stamps">
+      <div class="card">
+        <div class="split">
+          <div>
+            <h2>Stamp History</h2>
+            <p class="muted tiny">Checkpoint completion progress</p>
+          </div>
+          <div class="emoji">🎟️</div>
         </div>
         <div class="stamp-grid" id="stampGrid">
           <div class="stamp unlocked">Stamp 1</div>
@@ -450,199 +529,206 @@
           <div class="stamp">Stamp 5</div>
           <div class="stamp">Stamp 6</div>
         </div>
+        <p class="muted tiny" style="margin-top: 12px;">Complete tasks or use the photo hunt demo to unlock more stamps.</p>
       </div>
+    </section>
 
-      <div class="card col-4">
-        <div class="section-title">
-          <h3>Buggy Booking</h3>
-          <span class="muted">Reserve a ride</span>
-        </div>
-        <div class="mini-list">
-          <div class="list-item">
-            <strong>Next available slot</strong>
-            <p class="muted">2:30 PM · 4 seats left</p>
+    <section class="screen" id="screen-booths">
+      <div class="card">
+        <div class="split">
+          <div>
+            <h2>Booth Information</h2>
+            <p class="muted tiny">Know what each stop offers</p>
           </div>
-          <div class="list-item">
-            <strong>Estimated ride</strong>
-            <p class="muted">15 minutes guided route</p>
-          </div>
-        </div>
-        <button id="bookBuggyBtn" style="margin-top: 14px; width: 100%;">Book Buggy Ride</button>
-        <div id="bookingStatus" class="status" style="margin-top: 12px;">No booking made yet.</div>
-      </div>
-
-      <div class="card col-4">
-        <div class="section-title">
-          <h3>Queue Number</h3>
-          <span class="muted">For buggy / booth collection</span>
-        </div>
-        <p class="muted">Current issued number:</p>
-        <div id="queueNumber" class="queue-number">089</div>
-        <button id="queueBtn" style="margin-top: 14px; width: 100%;">Get Queue Number</button>
-      </div>
-
-      <div class="card col-4">
-        <div class="section-title">
-          <h3>Booth Information</h3>
-          <span class="muted">Useful stop details</span>
-        </div>
-        <div class="mini-list">
-          <div class="list-item">
-            <strong>Mangrove Booth</strong>
-            <p class="muted">Nature facts, guided explanations, photo spot.</p>
-          </div>
-          <div class="list-item">
-            <strong>Village Food Booth</strong>
-            <p class="muted">Traditional snacks, drinks, and local favourites.</p>
-          </div>
-          <div class="list-item">
-            <strong>Heritage Booth</strong>
-            <p class="muted">Stories, landmarks, and village history highlights.</p>
-          </div>
-        </div>
-      </div>
-
-      <div class="card col-12">
-        <div class="section-title">
-          <h3>Reviews</h3>
-          <span class="muted">Read and share visitor feedback</span>
+          <div class="emoji">🏕️</div>
         </div>
 
-        <div class="review-list" id="reviewList" style="margin-bottom: 16px;">
-          <div class="review">
-            <div class="stars">★★★★★</div>
-            <strong>Alicia</strong>
-            <p class="muted">Loved the self-guided route. The checkpoints made exploring more fun.</p>
-          </div>
-          <div class="review">
-            <div class="stars">★★★★☆</div>
-            <strong>Hakim</strong>
-            <p class="muted">The buggy idea is useful for families and elderly visitors.</p>
-          </div>
+        <div class="review" style="margin-top: 12px;">
+          <strong>Mangrove Booth</strong>
+          <p class="muted tiny">Ecology facts, guided storytelling, and scenic photo opportunities.</p>
         </div>
-
-        <div class="grid" style="gap: 14px;">
-          <div class="col-4">
-            <input id="reviewName" class="input" type="text" placeholder="Your name" />
-          </div>
-          <div class="col-4">
-            <select id="reviewRating">
-              <option value="★★★★★">5 stars</option>
-              <option value="★★★★☆">4 stars</option>
-              <option value="★★★☆☆">3 stars</option>
-              <option value="★★☆☆☆">2 stars</option>
-              <option value="★☆☆☆☆">1 star</option>
-            </select>
-          </div>
-          <div class="col-12">
-            <textarea id="reviewText" rows="4" placeholder="Write your review..."></textarea>
-          </div>
-          <div class="col-12">
-            <button id="submitReviewBtn">Submit Review</button>
-          </div>
+        <div class="review">
+          <strong>Food Booth</strong>
+          <p class="muted tiny">Local snacks, drinks, and simple village food recommendations.</p>
+        </div>
+        <div class="review">
+          <strong>Heritage Booth</strong>
+          <p class="muted tiny">Village history, cultural facts, and landmark highlights.</p>
         </div>
       </div>
     </section>
 
-    <div class="footer">
-      Smart Tourism Hub Beta · Single-file HTML prototype for GitHub Pages
-    </div>
+    <section class="screen" id="screen-reviews">
+      <div class="card">
+        <div class="split">
+          <div>
+            <h2>Visitor Reviews</h2>
+            <p class="muted tiny">Share and read feedback</p>
+          </div>
+          <div class="emoji">⭐</div>
+        </div>
+
+        <div id="reviewList" style="margin-top: 12px;">
+          <div class="review">
+            <div class="stars">★★★★★</div>
+            <strong>Alicia</strong>
+            <p class="muted tiny">Loved the self-guided route. It made exploring feel more fun and flexible.</p>
+          </div>
+          <div class="review">
+            <div class="stars">★★★★☆</div>
+            <strong>Hakim</strong>
+            <p class="muted tiny">The buggy option is useful for families and visitors who do not want to walk too much.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <h3>Add a review</h3>
+        <input id="reviewName" class="input" type="text" placeholder="Your name" />
+        <select id="reviewRating">
+          <option value="★★★★★">5 stars</option>
+          <option value="★★★★☆">4 stars</option>
+          <option value="★★★☆☆">3 stars</option>
+          <option value="★★☆☆☆">2 stars</option>
+          <option value="★☆☆☆☆">1 star</option>
+        </select>
+        <textarea id="reviewText" rows="4" placeholder="Write your review..."></textarea>
+        <button class="action-btn primary" id="submitReviewBtn"><strong>Submit review</strong><span class="tiny">Add feedback to the demo page</span></button>
+      </div>
+    </section>
+
+    <nav class="bottom-nav hidden" id="bottomNav">
+      <button class="nav-btn active" data-target="screen-home">Home</button>
+      <button class="nav-btn" data-target="screen-routes">Routes</button>
+      <button class="nav-btn" data-target="screen-booking">Booking</button>
+      <button class="nav-btn" data-target="screen-stamps">Stamps</button>
+      <button class="nav-btn" data-target="screen-reviews">Reviews</button>
+    </nav>
   </div>
 
   <script>
+    const screens = document.querySelectorAll('.screen');
+    const bottomNav = document.getElementById('bottomNav');
+    const navButtons = document.querySelectorAll('.nav-btn');
+    const menuButtons = document.querySelectorAll('.menu-btn');
+
     const loginBtn = document.getElementById('loginBtn');
     const guestBtn = document.getElementById('guestBtn');
     const loginStatus = document.getElementById('loginStatus');
     const nameInput = document.getElementById('nameInput');
-    const otpInput = document.getElementById('otpInput');
     const languageSelect = document.getElementById('languageSelect');
+    const otpInput = document.getElementById('otpInput');
+    const welcomeTitle = document.getElementById('welcomeTitle');
+    const welcomeSubtitle = document.getElementById('welcomeSubtitle');
 
-    const modeButtons = document.querySelectorAll('.mode-btn');
+    const routeTabs = document.querySelectorAll('.tab-btn');
     const routeLabel = document.getElementById('routeLabel');
     const routePath = document.getElementById('routePath');
     const modeDescription = document.getElementById('modeDescription');
 
-    const queueBtn = document.getElementById('queueBtn');
-    const queueNumber = document.getElementById('queueNumber');
-    const bookBuggyBtn = document.getElementById('bookBuggyBtn');
-    const bookingStatus = document.getElementById('bookingStatus');
-
+    const photoInput = document.getElementById('photoInput');
     const verifyPhotoBtn = document.getElementById('verifyPhotoBtn');
     const unlockStampBtn = document.getElementById('unlockStampBtn');
-    const photoInput = document.getElementById('photoInput');
     const photoStatus = document.getElementById('photoStatus');
     const stampGrid = document.getElementById('stampGrid');
 
-    const submitReviewBtn = document.getElementById('submitReviewBtn');
+    const bookingName = document.getElementById('bookingName');
+    const bookingPax = document.getElementById('bookingPax');
+    const bookBuggyBtn = document.getElementById('bookBuggyBtn');
+    const bookingStatus = document.getElementById('bookingStatus');
+    const queueBtn = document.getElementById('queueBtn');
+    const queueNumber = document.getElementById('queueNumber');
+
     const reviewName = document.getElementById('reviewName');
     const reviewRating = document.getElementById('reviewRating');
     const reviewText = document.getElementById('reviewText');
     const reviewList = document.getElementById('reviewList');
+    const submitReviewBtn = document.getElementById('submitReviewBtn');
 
     let queueCounter = 89;
     let unlockedStamps = 1;
 
-    loginBtn.addEventListener('click', () => {
-      const name = nameInput.value.trim() || 'Explorer';
-      const otp = otpInput.value.trim();
-      const language = languageSelect.value;
+    function showScreen(screenId) {
+      screens.forEach(screen => screen.classList.remove('active'));
+      document.getElementById(screenId).classList.add('active');
 
-      if (otp !== '123456') {
-        loginStatus.textContent = `OTP incorrect. Try 123456 for demo mode.`;
-        loginStatus.className = 'lang-note';
-        return;
+      if (screenId === 'screen-login') {
+        bottomNav.classList.add('hidden');
+      } else {
+        bottomNav.classList.remove('hidden');
       }
 
-      loginStatus.textContent = `Welcome, ${name}. Language set to ${language}.`;
+      navButtons.forEach(btn => {
+        btn.classList.toggle('active', btn.dataset.target === screenId);
+      });
+
+      if ([...navButtons].every(btn => btn.dataset.target !== screenId)) {
+        navButtons.forEach(btn => btn.classList.remove('active'));
+        document.querySelector('.nav-btn[data-target="screen-home"]').classList.add('active');
+      }
+
+      window.scrollTo(0, 0);
+    }
+
+    function enterApp(asGuest = false) {
+      const name = nameInput.value.trim() || 'Explorer';
+      const language = languageSelect.value;
+      welcomeTitle.textContent = `Hello, ${name}`;
+      welcomeSubtitle.textContent = asGuest
+        ? `Guest mode · Language: ${language}`
+        : `Logged in · Language: ${language}`;
+      showScreen('screen-home');
+    }
+
+    loginBtn.addEventListener('click', () => {
+      if (otpInput.value.trim() !== '123456') {
+        loginStatus.textContent = 'Incorrect OTP. Use 123456 for the beta demo.';
+        loginStatus.className = 'status error';
+        return;
+      }
+      loginStatus.textContent = 'Login successful.';
       loginStatus.className = 'status ok';
+      enterApp(false);
     });
 
     guestBtn.addEventListener('click', () => {
-      loginStatus.textContent = `Guest mode enabled. You can still explore the beta prototype.`;
+      loginStatus.textContent = 'Guest mode enabled.';
       loginStatus.className = 'status ok';
+      enterApp(true);
     });
 
-    modeButtons.forEach((button) => {
-      button.addEventListener('click', () => {
-        modeButtons.forEach((btn) => {
-          btn.classList.remove('active');
-          btn.classList.add('ghost');
-        });
+    navButtons.forEach(btn => {
+      btn.addEventListener('click', () => showScreen(btn.dataset.target));
+    });
 
-        button.classList.add('active');
-        button.classList.remove('ghost');
+    menuButtons.forEach(btn => {
+      btn.addEventListener('click', () => showScreen(btn.dataset.target));
+    });
 
-        const mode = button.dataset.mode;
-        routeLabel.textContent = `Current route: ${mode}`;
+    routeTabs.forEach(tab => {
+      tab.addEventListener('click', () => {
+        routeTabs.forEach(t => t.classList.remove('active'));
+        tab.classList.add('active');
+        const mode = tab.dataset.mode;
+        routeLabel.textContent = `Current mode: ${mode}`;
 
         if (mode === 'Walking') {
-          routePath.setAttribute('d', 'M10,85 C18,70 28,62 35,58 C48,50 44,35 60,30 C74,26 80,16 90,12');
-          modeDescription.textContent = 'Walking mode lets visitors explore freely and stop at checkpoints at their own pace.';
+          routePath.setAttribute('d', 'M10,84 C18,72 24,66 34,58 C45,49 46,38 58,31 C70,25 80,18 90,12');
+          modeDescription.textContent = 'Walking mode lets tourists move independently and explore checkpoints at their own pace.';
         } else {
-          routePath.setAttribute('d', 'M8,82 C20,76 24,64 38,56 C53,48 58,42 70,28 C76,22 84,18 92,15');
-          modeDescription.textContent = 'Buggy mode is better for guided travel, families, and visitors who prefer a quicker route.';
+          routePath.setAttribute('d', 'M10,82 C18,78 26,69 36,60 C48,50 58,44 69,31 C79,20 86,16 91,13');
+          modeDescription.textContent = 'Buggy mode supports guided travel and is more suitable for families or less mobile visitors.';
         }
       });
     });
 
-    queueBtn.addEventListener('click', () => {
-      queueCounter += 1;
-      queueNumber.textContent = String(queueCounter).padStart(3, '0');
-    });
-
-    bookBuggyBtn.addEventListener('click', () => {
-      bookingStatus.textContent = `Buggy ride booked successfully for the next available slot.`;
-      bookingStatus.className = 'status ok';
-    });
-
     verifyPhotoBtn.addEventListener('click', () => {
       if (!photoInput.files.length) {
-        photoStatus.textContent = 'Please upload a photo before verification.';
-        photoStatus.className = 'status';
+        photoStatus.textContent = 'Please upload a photo first.';
+        photoStatus.className = 'status error';
         return;
       }
-
-      photoStatus.textContent = `Photo verified successfully in beta demo.`;
+      photoStatus.textContent = 'Photo verified successfully in demo mode.';
       photoStatus.className = 'status ok';
     });
 
@@ -650,9 +736,25 @@
       const stamps = stampGrid.querySelectorAll('.stamp');
       if (unlockedStamps < stamps.length) {
         stamps[unlockedStamps].classList.add('unlocked');
-        stamps[unlockedStamps].textContent = `Stamp ${unlockedStamps + 1}`;
         unlockedStamps += 1;
+        photoStatus.textContent = 'New stamp unlocked.';
+        photoStatus.className = 'status ok';
+      } else {
+        photoStatus.textContent = 'All stamps already unlocked.';
+        photoStatus.className = 'status';
       }
+    });
+
+    bookBuggyBtn.addEventListener('click', () => {
+      const passenger = bookingName.value.trim() || 'Explorer';
+      const pax = bookingPax.value;
+      bookingStatus.textContent = `Booking confirmed for ${passenger} (${pax} pax) at 2:30 PM.`;
+      bookingStatus.className = 'status ok';
+    });
+
+    queueBtn.addEventListener('click', () => {
+      queueCounter += 1;
+      queueNumber.textContent = String(queueCounter).padStart(3, '0');
     });
 
     submitReviewBtn.addEventListener('click', () => {
@@ -670,13 +772,13 @@
       review.innerHTML = `
         <div class="stars">${rating}</div>
         <strong>${name}</strong>
-        <p class="muted">${text}</p>
+        <p class="muted tiny">${text}</p>
       `;
-
       reviewList.prepend(review);
       reviewName.value = '';
       reviewText.value = '';
       reviewRating.value = '★★★★★';
+      showScreen('screen-reviews');
     });
   </script>
 </body>
