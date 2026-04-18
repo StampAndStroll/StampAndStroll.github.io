@@ -1,16 +1,16 @@
 :root {
-  --bg: #efe7e3;
-  --panel: #fffaf8;
+  --bg: #f6f3f1;
+  --panel: #ffffff;
   --card: #ffffff;
-  --text: #403735;
+  --text: #2f2a28;
   --muted: #7a6d68;
-  --accent: #7b5d54;
-  --accent-2: #b68578;
-  --line: #decfc9;
-  --shadow: 0 14px 30px rgba(81, 60, 52, 0.12);
-  --radius-xl: 26px;
+  --accent: #5e8c61;
+  --accent-2: #c69c8e;
+  --line: #e6ded9;
+  --shadow: 0 12px 28px rgba(0, 0, 0, 0.08);
+  --radius-xl: 24px;
   --radius-lg: 18px;
-  --radius-md: 14px;
+  --radius-md: 12px;
 }
 
 * {
@@ -20,7 +20,7 @@
 body {
   margin: 0;
   font-family: Arial, Helvetica, sans-serif;
-  background: linear-gradient(180deg, #e6dcda 0%, var(--bg) 100%);
+  background: linear-gradient(180deg, #ece8e4 0%, var(--bg) 100%);
   color: var(--text);
 }
 
@@ -68,7 +68,7 @@ p {
 .hero-card {
   width: 100%;
   padding: 28px 22px;
-  background: linear-gradient(135deg, #f6e4de 0%, #efe6e1 55%, #e4d7d3 100%);
+  background: linear-gradient(135deg, #faf7f4 0%, #f2ece8 55%, #ebe4df 100%);
 }
 
 .center-screen {
@@ -76,9 +76,9 @@ p {
 }
 
 .hero-card h1 {
-  font-size: clamp(2.4rem, 7vw, 3.4rem);
+  font-size: clamp(2rem, 6vw, 2.8rem);
   line-height: 0.95;
-  margin-top: 14px;
+  margin-top: 16px;
 }
 
 .subtitle {
@@ -92,13 +92,32 @@ p {
   padding: 8px 14px;
   border-radius: 999px;
   border: 1px solid var(--line);
-  background: rgba(255, 255, 255, 0.7);
+  background: rgba(255, 255, 255, 0.8);
   font-size: 0.82rem;
   font-weight: 700;
 }
 
+.logo-large {
+  width: min(280px, 80%);
+  height: auto;
+  display: block;
+  margin: 0 auto 8px;
+}
+
+.logo-small {
+  height: 34px;
+  width: auto;
+  display: block;
+  object-fit: contain;
+}
+
 .page-card {
   padding: 18px;
+  transition: 0.2s;
+}
+
+.page-card:hover {
+  transform: translateY(-2px);
 }
 
 .page-card h2,
@@ -155,6 +174,7 @@ select {
   font-weight: 700;
   cursor: pointer;
   margin-top: 14px;
+  transition: 0.2s;
 }
 
 .primary-btn {
@@ -162,10 +182,19 @@ select {
   color: white;
 }
 
+.primary-btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.12);
+}
+
 .secondary-btn {
   background: white;
-  color: var(--accent);
+  color: var(--text);
   border: 1px solid var(--line);
+}
+
+.secondary-btn:hover {
+  background: #f5f5f5;
 }
 
 .large-btn {
@@ -190,9 +219,9 @@ select {
 
 .topbar-title {
   flex: 1;
-  text-align: center;
-  font-weight: 800;
-  letter-spacing: 0.4px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .topbar-spacer {
@@ -217,7 +246,7 @@ select {
   align-items: center;
   gap: 12px;
   margin-bottom: 14px;
-  background: linear-gradient(135deg, #f6e4de 0%, #efe6e1 55%, #e4d7d3 100%);
+  background: linear-gradient(135deg, #faf7f4 0%, #f2ece8 55%, #ebe4df 100%);
 }
 
 .profile-icon {
@@ -227,7 +256,7 @@ select {
   border: 1px solid var(--line);
   display: grid;
   place-items: center;
-  background: rgba(255, 255, 255, 0.65);
+  background: rgba(255, 255, 255, 0.8);
   font-size: 1.4rem;
 }
 
@@ -246,6 +275,12 @@ select {
   text-align: left;
   cursor: pointer;
   min-height: 150px;
+  transition: 0.2s;
+}
+
+.choice-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.08);
 }
 
 .choice-title {
@@ -267,7 +302,7 @@ select {
   transform: translateX(-50%);
   bottom: 0;
   width: min(430px, 100vw);
-  background: rgba(255, 250, 248, 0.97);
+  background: rgba(255, 255, 255, 0.96);
   border-top: 1px solid var(--line);
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -340,8 +375,6 @@ select {
   display: none;
 }
 
-/* walker page */
-
 .page-heading-row {
   display: flex;
   justify-content: space-between;
@@ -380,16 +413,21 @@ select {
 .map-hotspot {
   position: absolute;
   transform: translate(-50%, -50%);
-  width: 38px;
-  height: 38px;
+  width: 42px;
+  height: 42px;
   border-radius: 50%;
-  border: 2px solid #ffffff;
-  background: #7b5d54;
-  color: #ffffff;
+  border: 3px solid white;
+  background: var(--accent);
+  color: white;
   font-weight: 800;
-  font-size: 0.95rem;
+  font-size: 1rem;
   cursor: pointer;
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.18);
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.18);
+  transition: 0.2s;
+}
+
+.map-hotspot:hover {
+  transform: translate(-50%, -50%) scale(1.1);
 }
 
 .map-popup {
@@ -398,12 +436,23 @@ select {
   top: 50%;
   transform: translate(-50%, -50%);
   width: min(360px, calc(100vw - 32px));
-  background: var(--panel);
-  border: 1px solid var(--line);
-  border-radius: 20px;
-  box-shadow: 0 22px 50px rgba(0, 0, 0, 0.16);
-  padding: 16px;
+  background: white;
+  border-radius: 22px;
+  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.2);
+  padding: 18px;
   z-index: 40;
+  animation: popupIn 0.25s ease;
+}
+
+@keyframes popupIn {
+  from {
+    opacity: 0;
+    transform: translate(-50%, -60%);
+  }
+  to {
+    opacity: 1;
+    transform: translate(-50%, -50%);
+  }
 }
 
 .popup-header {
@@ -455,8 +504,6 @@ select {
   font-weight: 800;
 }
 
-/* buggy page */
-
 .route-list {
   display: grid;
   gap: 12px;
@@ -487,8 +534,6 @@ select {
   outline: 2px solid var(--accent-2);
   background: #fff4ef;
 }
-
-/* queue page */
 
 .queue-ticket {
   margin-top: 14px;
@@ -524,31 +569,6 @@ select {
 .ticket-status.paid {
   color: #2f8a5a;
 }
-
-@media (max-width: 480px) {
-  .choice-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .phone-row {
-    grid-template-columns: 100px 1fr;
-  }
-
-  .sidebar {
-    left: 0;
-    transform: none;
-  }
-
-  .page-heading-row {
-    flex-direction: column;
-    align-items: stretch;
-  }
-
-  .zoom-controls {
-    justify-content: flex-end;
-  }
-}
-/* trail page */
 
 .live-route-box {
   margin-top: 14px;
@@ -597,8 +617,6 @@ select {
   100% { left: 85%; top: 18%; }
 }
 
-/* photohunt page */
-
 .stamp-grid {
   margin-top: 14px;
   display: grid;
@@ -643,8 +661,6 @@ select {
   margin-bottom: 6px;
 }
 
-/* reviews page */
-
 .review-card {
   margin-top: 14px;
   border: 1px solid var(--line);
@@ -658,8 +674,6 @@ select {
   letter-spacing: 2px;
   margin-bottom: 6px;
 }
-
-/* account page */
 
 .info-list {
   margin-top: 8px;
@@ -689,8 +703,6 @@ select {
   text-align: right;
 }
 
-/* how-to page */
-
 .step-card {
   display: flex;
   gap: 12px;
@@ -713,4 +725,32 @@ select {
   display: grid;
   place-items: center;
   flex-shrink: 0;
+}
+
+@media (max-width: 480px) {
+  .choice-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .phone-row {
+    grid-template-columns: 100px 1fr;
+  }
+
+  .sidebar {
+    left: 0;
+    transform: none;
+  }
+
+  .page-heading-row {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .zoom-controls {
+    justify-content: flex-end;
+  }
+
+  .logo-small {
+    height: 28px;
+  }
 }
