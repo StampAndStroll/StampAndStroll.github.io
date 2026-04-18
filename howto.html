@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>How To Use | Stamp and Stroll</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <aside id="sidebar" class="sidebar hidden">
+    <div class="sidebar-header">
+      <h3>Menu</h3>
+      <button class="icon-btn" onclick="toggleSidebar()">✕</button>
+    </div>
+
+    <button class="sidebar-link" onclick="goTo('howto.html')">How to use Stamp and Stroll</button>
+    <button class="sidebar-link" onclick="goTo('account.html')">Account</button>
+    <button class="sidebar-link" onclick="signOut()">Sign Out</button>
+  </aside>
+
+  <div id="sidebarOverlay" class="overlay hidden" onclick="toggleSidebar()"></div>
+
+  <main class="app-shell with-nav">
+    <header class="topbar">
+      <button class="icon-btn" onclick="toggleSidebar()">☰</button>
+      <div class="topbar-title">STAMP AND STROLL</div>
+      <div class="topbar-spacer"></div>
+    </header>
+
+    <section class="card page-card">
+      <h2>How to use Stamp and Stroll</h2>
+      <p class="muted">A quick guide for visitors using the prototype app.</p>
+    </section>
+
+    <section class="card page-card">
+      <div class="step-card">
+        <div class="step-number">1</div>
+        <div>
+          <h3>Sign up</h3>
+          <p class="muted">Enter your phone number, select your country code, and verify with OTP.</p>
+        </div>
+      </div>
+
+      <div class="step-card">
+        <div class="step-number">2</div>
+        <div>
+          <h3>Choose your path</h3>
+          <p class="muted">Select either Walker or Buggy Tour based on how you want to explore the kampung.</p>
+        </div>
+      </div>
+
+      <div class="step-card">
+        <div class="step-number">3</div>
+        <div>
+          <h3>Use the map</h3>
+          <p class="muted">Walker users can tap map hotspots to learn about each themed stop and location.</p>
+        </div>
+      </div>
+
+      <div class="step-card">
+        <div class="step-number">4</div>
+        <div>
+          <h3>Buggy queue and live trail</h3>
+          <p class="muted">Buggy users choose a route, get a queue ticket, pay, then follow the live trail page.</p>
+        </div>
+      </div>
+
+      <div class="step-card">
+        <div class="step-number">5</div>
+        <div>
+          <h3>Complete the photo hunt</h3>
+          <p class="muted">Upload checkpoint photos to complete the activity and unlock the mascot reward.</p>
+        </div>
+      </div>
+
+      <div class="step-card">
+        <div class="step-number">6</div>
+        <div>
+          <h3>Collect physical stamps</h3>
+          <p class="muted">Stamps are collected physically on-site and combine into a take-home souvenir image.</p>
+        </div>
+      </div>
+    </section>
+
+    <nav class="bottom-nav">
+      <button class="nav-item" onclick="goTo('home.html')">
+        <span>🏠</span>
+        <small>Home</small>
+      </button>
+      <button class="nav-item" onclick="openDynamicMapPage()">
+        <span>🗺️</span>
+        <small>Map</small>
+      </button>
+      <button class="nav-item" onclick="goTo('reviews.html')">
+        <span>⭐</span>
+        <small>Review</small>
+      </button>
+    </nav>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
