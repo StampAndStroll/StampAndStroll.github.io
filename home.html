@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Home | Stamp and Stroll</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body onload="loadHomePage()">
+  <aside id="sidebar" class="sidebar hidden">
+    <div class="sidebar-header">
+      <h3>Menu</h3>
+      <button class="icon-btn" onclick="toggleSidebar()">✕</button>
+    </div>
+
+    <button class="sidebar-link" onclick="goTo('howto.html')">How to use Stamp and Stroll</button>
+    <button class="sidebar-link" onclick="goTo('account.html')">Account</button>
+    <button class="sidebar-link" onclick="signOut()">Sign Out</button>
+  </aside>
+
+  <div id="sidebarOverlay" class="overlay hidden" onclick="toggleSidebar()"></div>
+
+  <main class="app-shell with-nav">
+    <header class="topbar">
+      <button class="icon-btn" onclick="toggleSidebar()">☰</button>
+      <div class="topbar-title">STAMP AND STROLL</div>
+      <div class="topbar-spacer"></div>
+    </header>
+
+    <section class="hero-strip">
+      <div class="profile-icon">👤</div>
+      <div>
+        <h2>Hello, Explorer!</h2>
+        <p id="homeLanguage" class="muted">Language: English</p>
+      </div>
+    </section>
+
+    <section class="card page-card">
+      <h3>Choose your path:</h3>
+
+      <div class="choice-grid">
+        <button class="choice-card" onclick="selectPath('walker')">
+          <span class="choice-title">WALKER</span>
+          <span class="choice-desc">Interactive walking map experience</span>
+        </button>
+
+        <button class="choice-card" onclick="selectPath('buggy')">
+          <span class="choice-title">BUGGY TOUR</span>
+          <span class="choice-desc">Choose route and get queue ticket</span>
+        </button>
+      </div>
+    </section>
+
+    <nav class="bottom-nav">
+      <button class="nav-item active" onclick="goTo('home.html')">
+        <span>🏠</span>
+        <small>Home</small>
+      </button>
+      <button class="nav-item" onclick="openDynamicMapPage()">
+        <span>🗺️</span>
+        <small>Map</small>
+      </button>
+      <button class="nav-item" onclick="goTo('reviews.html')">
+        <span>⭐</span>
+        <small>Review</small>
+      </button>
+    </nav>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
