@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sign Up | Stamp and Stroll</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <main class="app-shell">
+    <section class="card page-card">
+      <h2>Sign Up</h2>
+      <p class="muted">
+        Enter your phone number. The selected country code will set the page language for this demo.
+      </p>
+
+      <label class="label">Phone Number</label>
+      <div class="phone-row">
+        <select id="countryCode" class="input select-input">
+          <option value="English">+65</option>
+          <option value="Bahasa Melayu">+60</option>
+          <option value="中文">+86</option>
+          <option value="தமிழ்">+91</option>
+        </select>
+        <input id="phoneNumber" class="input" type="tel" placeholder="Enter phone number" />
+      </div>
+
+      <label class="label">Language Preview</label>
+      <div id="languagePreview" class="preview-box">English</div>
+
+      <label class="label">OTP</label>
+      <input id="otpInput" class="input" type="text" placeholder="Enter OTP (demo: 123456)" />
+
+      <button class="secondary-btn" type="button" onclick="showOtpHint()">
+        Get OTP
+      </button>
+
+      <button class="primary-btn" type="button" onclick="verifyOtpAndContinue()">
+        Next &gt;
+      </button>
+
+      <p id="signupStatus" class="status-text"></p>
+    </section>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
