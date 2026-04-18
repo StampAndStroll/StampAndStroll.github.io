@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Buggy Route | Stamp and Stroll</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body onload="loadBuggyPage()">
+  <aside id="sidebar" class="sidebar hidden">
+    <div class="sidebar-header">
+      <h3>Menu</h3>
+      <button class="icon-btn" onclick="toggleSidebar()">✕</button>
+    </div>
+
+    <button class="sidebar-link" onclick="goTo('howto.html')">How to use Stamp and Stroll</button>
+    <button class="sidebar-link" onclick="goTo('account.html')">Account</button>
+    <button class="sidebar-link" onclick="signOut()">Sign Out</button>
+  </aside>
+
+  <div id="sidebarOverlay" class="overlay hidden" onclick="toggleSidebar()"></div>
+
+  <main class="app-shell with-nav">
+    <header class="topbar">
+      <button class="icon-btn" onclick="toggleSidebar()">☰</button>
+      <div class="topbar-title">STAMP AND STROLL</div>
+      <div class="topbar-spacer"></div>
+    </header>
+
+    <section class="card page-card">
+      <h2>Choose Your Route</h2>
+      <p class="muted">Select 1 of the 2 buggy routes before continuing.</p>
+
+      <div class="route-list">
+        <button id="route1Btn" class="route-option" onclick="selectBuggyRoute('Route 1')">
+          <strong>Route 1</strong>
+          <span>Shorter village ride</span>
+        </button>
+
+        <button id="route2Btn" class="route-option" onclick="selectBuggyRoute('Route 2')">
+          <strong>Route 2</strong>
+          <span>Longer scenic ride</span>
+        </button>
+      </div>
+
+      <p id="buggyRouteStatus" class="status-text"></p>
+
+      <button class="primary-btn" onclick="goToQueuePage()">
+        Next &gt;
+      </button>
+    </section>
+
+    <nav class="bottom-nav">
+      <button class="nav-item" onclick="goTo('home.html')">
+        <span>🏠</span>
+        <small>Home</small>
+      </button>
+      <button class="nav-item active" onclick="openDynamicMapPage()">
+        <span>🗺️</span>
+        <small>Map</small>
+      </button>
+      <button class="nav-item" onclick="goTo('reviews.html')">
+        <span>⭐</span>
+        <small>Review</small>
+      </button>
+    </nav>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
