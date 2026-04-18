@@ -372,3 +372,30 @@ function submitReview() {
   ratingInput.value = "★★★★★";
   commentInput.value = "";
 }
+
+function loadAccountPage() {
+  const phone = localStorage.getItem("stamp_phone") || "-";
+  const language = localStorage.getItem("stamp_language") || "English";
+  const mode = localStorage.getItem("stamp_mode") || "";
+  const route = localStorage.getItem("stamp_buggy_route") || "-";
+  const paid = localStorage.getItem("stamp_buggy_paid") === "true";
+
+  const modeLabel =
+    mode === "walker" ? "Walker" :
+    mode === "buggy" ? "Buggy Tour" :
+    "Not selected";
+
+  const paymentLabel = paid ? "Paid" : "Pending";
+
+  const phoneEl = document.getElementById("accountPhone");
+  const languageEl = document.getElementById("accountLanguage");
+  const modeEl = document.getElementById("accountMode");
+  const routeEl = document.getElementById("accountRoute");
+  const paymentEl = document.getElementById("accountPayment");
+
+  if (phoneEl) phoneEl.textContent = phone;
+  if (languageEl) languageEl.textContent = language;
+  if (modeEl) modeEl.textContent = modeLabel;
+  if (routeEl) routeEl.textContent = mode === "buggy" ? route : "-";
+  if (paymentEl) paymentEl.textContent = paymentLabel;
+}
