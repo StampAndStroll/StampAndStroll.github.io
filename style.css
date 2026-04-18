@@ -384,13 +384,14 @@ h1, h2, h3, p {
 .map-hotspot {
   position: absolute;
   transform: translate(-50%, -50%);
-  width: 32px;
-  height: 32px;
+  width: 38px;
+  height: 38px;
   border-radius: 50%;
-  border: 2px solid white;
-  background: var(--accent);
-  color: white;
-  font-weight: 700;
+  border: 2px solid #ffffff;
+  background: #7b5d54;
+  color: #ffffff;
+  font-weight: 800;
+  font-size: 0.95rem;
   cursor: pointer;
   box-shadow: 0 8px 16px rgba(0,0,0,0.18);
 }
