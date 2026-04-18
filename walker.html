@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Walker Map | Stamp and Stroll</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body onload="loadWalkerPage()">
+  <aside id="sidebar" class="sidebar hidden">
+    <div class="sidebar-header">
+      <h3>Menu</h3>
+      <button class="icon-btn" onclick="toggleSidebar()">✕</button>
+    </div>
+
+    <button class="sidebar-link" onclick="goTo('howto.html')">How to use Stamp and Stroll</button>
+    <button class="sidebar-link" onclick="goTo('account.html')">Account</button>
+    <button class="sidebar-link" onclick="signOut()">Sign Out</button>
+  </aside>
+
+  <div id="sidebarOverlay" class="overlay hidden" onclick="toggleSidebar()"></div>
+
+  <div id="mapPopupOverlay" class="overlay hidden" onclick="closeMapPopup()"></div>
+
+  <div id="mapPopup" class="map-popup hidden">
+    <div class="popup-header">
+      <h3 id="popupTitle">Location</h3>
+      <button class="icon-btn" onclick="closeMapPopup()">✕</button>
+    </div>
+
+    <div class="popup-image" id="popupImage">Image preview</div>
+    <p id="popupHistory" class="muted popup-text"></p>
+    <p id="popupKnownFor" class="muted popup-text"></p>
+
+    <div class="stamp-preview-box">
+      <span class="stamp-preview-label">Stamp silhouette</span>
+      <div id="popupStamp" class="stamp-silhouette">★</div>
+    </div>
+  </div>
+
+  <main class="app-shell with-nav">
+    <header class="topbar">
+      <button class="icon-btn" onclick="toggleSidebar()">☰</button>
+      <div class="topbar-title">STAMP AND STROLL</div>
+      <div class="topbar-spacer"></div>
+    </header>
+
+    <section class="card page-card">
+      <div class="page-heading-row">
+        <div>
+          <h2>Walker Page</h2>
+          <p class="muted">Interactive map with clickable highlighted locations</p>
+        </div>
+        <div class="zoom-controls">
+          <button class="icon-btn" onclick="zoomMap(-0.1)">−</button>
+          <button class="icon-btn" onclick="zoomMap(0.1)">＋</button>
+        </div>
+      </div>
+
+      <div class="map-frame">
+        <div id="mapZoomLayer" class="map-zoom-layer">
+          <img src="map.png" alt="Stamp and Stroll Guide Map" class="guide-map" />
+
+          <button class="map-hotspot" style="top: 17%; left: 34%;" onclick="openMapPopup('mainBooth')">
+            1
+          </button>
+
+          <button class="map-hotspot" style="top: 52%; left: 63%;" onclick="openMapPopup('foodBooth')">
+            2
+          </button>
+
+          <button class="map-hotspot" style="top: 83%; left: 63%;" onclick="openMapPopup('coastalStop')">
+            3
+          </button>
+
+          <button class="map-hotspot" style="top: 18%; left: 82%;" onclick="openMapPopup('lookout')">
+            4
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <nav class="bottom-nav">
+      <button class="nav-item" onclick="goTo('home.html')">
+        <span>🏠</span>
+        <small>Home</small>
+      </button>
+      <button class="nav-item active" onclick="openDynamicMapPage()">
+        <span>🗺️</span>
+        <small>Map</small>
+      </button>
+      <button class="nav-item" onclick="goTo('reviews.html')">
+        <span>⭐</span>
+        <small>Review</small>
+      </button>
+    </nav>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
