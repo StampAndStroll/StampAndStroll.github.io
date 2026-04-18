@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Account | Stamp and Stroll</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body onload="loadAccountPage()">
+  <aside id="sidebar" class="sidebar hidden">
+    <div class="sidebar-header">
+      <h3>Menu</h3>
+      <button class="icon-btn" onclick="toggleSidebar()">✕</button>
+    </div>
+
+    <button class="sidebar-link" onclick="goTo('howto.html')">How to use Stamp and Stroll</button>
+    <button class="sidebar-link" onclick="goTo('account.html')">Account</button>
+    <button class="sidebar-link" onclick="signOut()">Sign Out</button>
+  </aside>
+
+  <div id="sidebarOverlay" class="overlay hidden" onclick="toggleSidebar()"></div>
+
+  <main class="app-shell with-nav">
+    <header class="topbar">
+      <button class="icon-btn" onclick="toggleSidebar()">☰</button>
+      <div class="topbar-title">STAMP AND STROLL</div>
+      <div class="topbar-spacer"></div>
+    </header>
+
+    <section class="hero-strip">
+      <div class="profile-icon">👤</div>
+      <div>
+        <h2>Account</h2>
+        <p class="muted">Your saved visitor information</p>
+      </div>
+    </section>
+
+    <section class="card page-card">
+      <h3>Profile Details</h3>
+      <div class="info-list">
+        <div class="info-row">
+          <span class="info-label">Phone Number</span>
+          <span id="accountPhone" class="info-value">-</span>
+        </div>
+
+        <div class="info-row">
+          <span class="info-label">Language</span>
+          <span id="accountLanguage" class="info-value">English</span>
+        </div>
+
+        <div class="info-row">
+          <span class="info-label">Selected Mode</span>
+          <span id="accountMode" class="info-value">Not selected</span>
+        </div>
+
+        <div class="info-row">
+          <span class="info-label">Buggy Route</span>
+          <span id="accountRoute" class="info-value">-</span>
+        </div>
+
+        <div class="info-row">
+          <span class="info-label">Payment Status</span>
+          <span id="accountPayment" class="info-value">Pending</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="card page-card">
+      <h3>Stamp Preview</h3>
+      <p class="muted">Physical stamps are collected on-site. This preview shows the concept of the full souvenir image.</p>
+
+      <div class="stamp-grid">
+        <div class="stamp-card unlocked">1</div>
+        <div class="stamp-card">2</div>
+        <div class="stamp-card">3</div>
+        <div class="stamp-card">4</div>
+      </div>
+    </section>
+
+    <nav class="bottom-nav">
+      <button class="nav-item" onclick="goTo('home.html')">
+        <span>🏠</span>
+        <small>Home</small>
+      </button>
+      <button class="nav-item" onclick="openDynamicMapPage()">
+        <span>🗺️</span>
+        <small>Map</small>
+      </button>
+      <button class="nav-item" onclick="goTo('reviews.html')">
+        <span>⭐</span>
+        <small>Review</small>
+      </button>
+    </nav>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
