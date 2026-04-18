@@ -12,7 +12,6 @@
       <h3>Menu</h3>
       <button class="icon-btn" onclick="toggleSidebar()">✕</button>
     </div>
-
     <button class="sidebar-link" onclick="goTo('howto.html')">How to use Stamp and Stroll</button>
     <button class="sidebar-link" onclick="goTo('account.html')">Account</button>
     <button class="sidebar-link" onclick="signOut()">Sign Out</button>
@@ -23,7 +22,9 @@
   <main class="app-shell with-nav">
     <header class="topbar">
       <button class="icon-btn" onclick="goTo('photohunt.html')">📷</button>
-      <div class="topbar-title">STAMP AND STROLL</div>
+      <div class="topbar-title">
+        <img src="logo.png" alt="Stamp and Stroll Logo" class="logo-small" />
+      </div>
       <button class="icon-btn" onclick="toggleSidebar()">☰</button>
     </header>
 
@@ -33,21 +34,8 @@
 
       <div class="live-route-box">
         <svg class="live-route-svg" viewBox="0 0 100 100" preserveAspectRatio="none">
-          <path
-            d="M10,84 C22,74 28,66 37,58 C48,48 58,43 69,31 C76,23 84,18 91,14"
-            fill="none"
-            stroke="#d9b8ae"
-            stroke-width="3.2"
-            stroke-linecap="round"
-          />
-          <path
-            d="M10,84 C22,74 28,66 37,58 C48,48 58,43 69,31 C76,23 84,18 91,14"
-            fill="none"
-            stroke="#68b96d"
-            stroke-width="3.2"
-            stroke-linecap="round"
-            stroke-dasharray="55 100"
-          />
+          <path d="M10,84 C22,74 28,66 37,58 C48,48 58,43 69,31 C76,23 84,18 91,14" fill="none" stroke="#d9b8ae" stroke-width="3.2" stroke-linecap="round" />
+          <path d="M10,84 C22,74 28,66 37,58 C48,48 58,43 69,31 C76,23 84,18 91,14" fill="none" stroke="#68b96d" stroke-width="3.2" stroke-linecap="round" stroke-dasharray="55 100" />
         </svg>
 
         <div class="route-stop" style="top: 82%; left: 12%;">Start</div>
