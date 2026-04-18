@@ -19,7 +19,6 @@
   </aside>
 
   <div id="sidebarOverlay" class="overlay hidden" onclick="toggleSidebar()"></div>
-
   <div id="mapPopupOverlay" class="overlay hidden" onclick="closeMapPopup()"></div>
 
   <div id="mapPopup" class="map-popup hidden">
@@ -29,6 +28,7 @@
     </div>
 
     <div class="popup-image" id="popupImage">Image preview</div>
+    <p id="popupFocus" class="muted popup-text"></p>
     <p id="popupHistory" class="muted popup-text"></p>
     <p id="popupKnownFor" class="muted popup-text"></p>
 
@@ -49,8 +49,9 @@
       <div class="page-heading-row">
         <div>
           <h2>Walker Page</h2>
-          <p class="muted">Interactive map with clickable highlighted locations</p>
+          <p class="muted">Tap the highlighted points to learn more about each location.</p>
         </div>
+
         <div class="zoom-controls">
           <button class="icon-btn" onclick="zoomMap(-0.1)">−</button>
           <button class="icon-btn" onclick="zoomMap(0.1)">＋</button>
@@ -59,22 +60,34 @@
 
       <div class="map-frame">
         <div id="mapZoomLayer" class="map-zoom-layer">
-          <img src="Screenshot 2026-04-18 204040.png" alt="Stamp and Stroll Guide Map" class="guide-map" />
+          <img
+            src="Screenshot 2026-04-18 204040.png"
+            alt="Stamp and Stroll Guide Map"
+            class="guide-map"
+          />
 
-          <button class="map-hotspot" style="top: 17%; left: 34%;" onclick="openMapPopup('mainBooth')">
+          <button class="map-hotspot" style="top: 7.5%; left: 35.5%;" onclick="openMapPopup('kampungLiving')">
             1
           </button>
 
-          <button class="map-hotspot" style="top: 52%; left: 63%;" onclick="openMapPopup('foodBooth')">
+          <button class="map-hotspot" style="top: 12.5%; left: 44.5%;" onclick="openMapPopup('tasteOfTheKampung')">
             2
           </button>
 
-          <button class="map-hotspot" style="top: 83%; left: 63%;" onclick="openMapPopup('coastalStop')">
+          <button class="map-hotspot" style="top: 30%; left: 35.5%;" onclick="openMapPopup('heritageAndFaith')">
             3
           </button>
 
-          <button class="map-hotspot" style="top: 18%; left: 82%;" onclick="openMapPopup('lookout')">
+          <button class="map-hotspot" style="top: 58%; left: 74%;" onclick="openMapPopup('lifeByTheSea')">
             4
+          </button>
+
+          <button class="map-hotspot" style="top: 50%; left: 88.5%;" onclick="openMapPopup('naturesRoots')">
+            5
+          </button>
+
+          <button class="map-hotspot" style="top: 86.5%; left: 67.5%;" onclick="openMapPopup('twoLandsOneHorizon')">
+            6
           </button>
         </div>
       </div>
