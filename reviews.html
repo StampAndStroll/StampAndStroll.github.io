@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Reviews | Stamp and Stroll</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <aside id="sidebar" class="sidebar hidden">
+    <div class="sidebar-header">
+      <h3>Menu</h3>
+      <button class="icon-btn" onclick="toggleSidebar()">✕</button>
+    </div>
+
+    <button class="sidebar-link" onclick="goTo('howto.html')">How to use Stamp and Stroll</button>
+    <button class="sidebar-link" onclick="goTo('account.html')">Account</button>
+    <button class="sidebar-link" onclick="signOut()">Sign Out</button>
+  </aside>
+
+  <div id="sidebarOverlay" class="overlay hidden" onclick="toggleSidebar()"></div>
+
+  <main class="app-shell with-nav">
+    <header class="topbar">
+      <button class="icon-btn" onclick="toggleSidebar()">☰</button>
+      <div class="topbar-title">STAMP AND STROLL</div>
+      <div class="topbar-spacer"></div>
+    </header>
+
+    <section class="card page-card" id="reviewList">
+      <h2>Reviews</h2>
+
+      <div class="review-card">
+        <div class="review-stars">★★★★★</div>
+        <strong>Visitor A</strong>
+        <p class="muted">The route was easy to follow and the booth themes were interesting.</p>
+      </div>
+
+      <div class="review-card">
+        <div class="review-stars">★★★★☆</div>
+        <strong>Visitor B</strong>
+        <p class="muted">The physical stamp idea is really memorable and cute.</p>
+      </div>
+    </section>
+
+    <section class="card page-card">
+      <h3>Leave a Review</h3>
+
+      <label class="label">Your Name</label>
+      <input id="reviewName" class="input" type="text" placeholder="Enter your name" />
+
+      <label class="label">Rating</label>
+      <select id="reviewRating" class="input">
+        <option value="★★★★★">5 stars</option>
+        <option value="★★★★☆">4 stars</option>
+        <option value="★★★☆☆">3 stars</option>
+        <option value="★★☆☆☆">2 stars</option>
+        <option value="★☆☆☆☆">1 star</option>
+      </select>
+
+      <label class="label">Comment</label>
+      <textarea id="reviewComment" class="input" rows="4" placeholder="Write your review..."></textarea>
+
+      <button class="primary-btn" onclick="submitReview()">
+        Submit Review
+      </button>
+    </section>
+
+    <nav class="bottom-nav">
+      <button class="nav-item" onclick="goTo('home.html')">
+        <span>🏠</span>
+        <small>Home</small>
+      </button>
+      <button class="nav-item" onclick="openDynamicMapPage()">
+        <span>🗺️</span>
+        <small>Map</small>
+      </button>
+      <button class="nav-item active" onclick="goTo('reviews.html')">
+        <span>⭐</span>
+        <small>Review</small>
+      </button>
+    </nav>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
