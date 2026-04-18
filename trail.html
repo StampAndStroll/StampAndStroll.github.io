@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Live Trail | Stamp and Stroll</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body onload="loadTrailPage()">
+  <aside id="sidebar" class="sidebar hidden">
+    <div class="sidebar-header">
+      <h3>Menu</h3>
+      <button class="icon-btn" onclick="toggleSidebar()">✕</button>
+    </div>
+
+    <button class="sidebar-link" onclick="goTo('howto.html')">How to use Stamp and Stroll</button>
+    <button class="sidebar-link" onclick="goTo('account.html')">Account</button>
+    <button class="sidebar-link" onclick="signOut()">Sign Out</button>
+  </aside>
+
+  <div id="sidebarOverlay" class="overlay hidden" onclick="toggleSidebar()"></div>
+
+  <main class="app-shell with-nav">
+    <header class="topbar">
+      <button class="icon-btn" onclick="goTo('photohunt.html')">📷</button>
+      <div class="topbar-title">STAMP AND STROLL</div>
+      <button class="icon-btn" onclick="toggleSidebar()">☰</button>
+    </header>
+
+    <section class="card page-card">
+      <h2>Animated Real-Time Trail</h2>
+      <p class="muted">Your buggy route is now live after payment.</p>
+
+      <div class="live-route-box">
+        <svg class="live-route-svg" viewBox="0 0 100 100" preserveAspectRatio="none">
+          <path
+            d="M10,84 C22,74 28,66 37,58 C48,48 58,43 69,31 C76,23 84,18 91,14"
+            fill="none"
+            stroke="#d9b8ae"
+            stroke-width="3.2"
+            stroke-linecap="round"
+          />
+          <path
+            d="M10,84 C22,74 28,66 37,58 C48,48 58,43 69,31 C76,23 84,18 91,14"
+            fill="none"
+            stroke="#68b96d"
+            stroke-width="3.2"
+            stroke-linecap="round"
+            stroke-dasharray="55 100"
+          />
+        </svg>
+
+        <div class="route-stop" style="top: 82%; left: 12%;">Start</div>
+        <div class="route-stop" style="top: 63%; left: 34%;">Stop A</div>
+        <div class="route-stop" style="top: 46%; left: 53%;">Stop B</div>
+        <div class="route-stop" style="top: 24%; left: 76%;">End</div>
+
+        <div class="moving-dot"></div>
+      </div>
+    </section>
+
+    <section class="card page-card">
+      <h3>Journey Status</h3>
+      <p id="trailRouteDisplay" class="muted">Route: Route 1</p>
+      <p class="muted">Current stop: Mid-route checkpoint</p>
+      <p class="muted">Next stop: Final scenic point</p>
+
+      <button class="primary-btn" onclick="goTo('photohunt.html')">
+        Open Photo Hunt
+      </button>
+    </section>
+
+    <nav class="bottom-nav">
+      <button class="nav-item" onclick="goTo('home.html')">
+        <span>🏠</span>
+        <small>Home</small>
+      </button>
+      <button class="nav-item active" onclick="openDynamicMapPage()">
+        <span>🗺️</span>
+        <small>Map</small>
+      </button>
+      <button class="nav-item" onclick="goTo('reviews.html')">
+        <span>⭐</span>
+        <small>Review</small>
+      </button>
+    </nav>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
