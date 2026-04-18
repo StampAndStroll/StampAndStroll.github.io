@@ -140,33 +140,70 @@ function zoomMap(step) {
 }
 
 const mapLocations = {
-  mainBooth: {
-    title: "Layered Stamp Booth",
-    image: "Main booth image",
-    history: "This is the main stamp trail booth where visitors begin collecting stamps.",
-    knownFor: "Known for helping visitors collect layered stamps that form a complete picture.",
-    stamp: "⬢"
+  kampungLiving: {
+    title: "Kampung Living",
+    image: "Daily village life",
+    focus: "Focus: Daily village life and community.",
+    history:
+      "This stop introduces visitors to the authentic kampung experience by showing how locals live, interact, and go about their simple everyday lifestyle.",
+    knownFor:
+      "Known for reflecting the social and communal side of village life, helping tourists understand the human side of Kampung Sungai Melayu.",
+    stamp: "🏠"
   },
-  foodBooth: {
-    title: "Local Food Booth",
-    image: "Food booth image",
-    history: "This stop highlights local food vendors and supports small businesses in the village.",
-    knownFor: "Known for local snacks and bonus stamp opportunities.",
-    stamp: "◉"
+
+  tasteOfTheKampung: {
+    title: "Taste of the Kampung",
+    image: "Local snacks and food culture",
+    focus: "Focus: Local snacks and food culture.",
+    history:
+      "This stop highlights the food traditions of the kampung through local snacks, flavours, and everyday food culture found in the community.",
+    knownFor:
+      "Known for helping tourists explore local tastes and appreciate how food is part of daily village interaction and culture.",
+    stamp: "🍴"
   },
-  coastalStop: {
-    title: "Coastal Trail Stop",
-    image: "Coastal stop image",
-    history: "This section follows the coastal side of the kampung and gives visitors a scenic route.",
-    knownFor: "Known for seaside views and nature exploration.",
-    stamp: "△"
+
+  heritageAndFaith: {
+    title: "Heritage and Faith",
+    image: "Cultural identity and religious significance",
+    focus: "Focus: Cultural identity and religious significance.",
+    history:
+      "This stop highlights the mosque and surrounding cultural practices, showing how faith and heritage shape the identity of the kampung community.",
+    knownFor:
+      "Known for promoting awareness, understanding, and respect for local traditions, customs, and religious values.",
+    stamp: "🕌"
   },
-  lookout: {
-    title: "Lookout Point",
-    image: "Lookout image",
-    history: "This upper trail stop acts as a key navigation and viewing point on the route.",
-    knownFor: "Known for orientation, views, and navigation support.",
-    stamp: "✦"
+
+  lifeByTheSea: {
+    title: "Life by the Sea",
+    image: "Fishing lifestyle and coastal environment",
+    focus: "Focus: Fishing lifestyle and coastal environment.",
+    history:
+      "This stop reflects boats, fishing activities, and seaside living, showing how the community has long depended on the sea for livelihood and daily life.",
+    knownFor:
+      "Known for connecting tourists to the maritime character of the village and its relationship with the coastal environment.",
+    stamp: "⚓"
+  },
+
+  naturesRoots: {
+    title: "Nature’s Roots",
+    image: "Mangrove ecosystem and sustainability",
+    focus: "Focus: Mangrove ecosystem and sustainability.",
+    history:
+      "This stop introduces the mangrove environment and its ecological importance, linking the village to nature-based learning and environmental stewardship.",
+    knownFor:
+      "Known for emphasising environmental awareness and supporting eco-tourism and sustainability goals within Kampung Sungai Melayu.",
+    stamp: "🌿"
+  },
+
+  twoLandsOneHorizon: {
+    title: "Two Lands, One Horizon",
+    image: "View of Singapore and Johor",
+    focus: "Focus: View of Singapore and Johor.",
+    history:
+      "This stop highlights the rare geographical view across both Singapore and Johor, making it a memorable visual landmark within the route.",
+    knownFor:
+      "Known for being a distinctive wow-factor location that gives tourists a broader sense of place and cross-border perspective.",
+    stamp: "🌅"
   }
 };
 
@@ -174,11 +211,13 @@ function openMapPopup(locationKey) {
   const popup = document.getElementById("mapPopup");
   const overlay = document.getElementById("mapPopupOverlay");
   const data = mapLocations[locationKey];
+
   if (!popup || !overlay || !data) return;
 
   document.getElementById("popupTitle").textContent = data.title;
   document.getElementById("popupImage").textContent = data.image;
-  document.getElementById("popupHistory").textContent = `History: ${data.history}`;
+  document.getElementById("popupFocus").textContent = data.focus;
+  document.getElementById("popupHistory").textContent = `Description: ${data.history}`;
   document.getElementById("popupKnownFor").textContent = `Known for: ${data.knownFor}`;
   document.getElementById("popupStamp").textContent = data.stamp;
 
@@ -189,6 +228,7 @@ function openMapPopup(locationKey) {
 function closeMapPopup() {
   const popup = document.getElementById("mapPopup");
   const overlay = document.getElementById("mapPopupOverlay");
+
   if (!popup || !overlay) return;
 
   popup.classList.add("hidden");
