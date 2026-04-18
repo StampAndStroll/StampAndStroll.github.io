@@ -12,7 +12,6 @@
       <h3>Menu</h3>
       <button class="icon-btn" onclick="toggleSidebar()">✕</button>
     </div>
-
     <button class="sidebar-link" onclick="goTo('howto.html')">How to use Stamp and Stroll</button>
     <button class="sidebar-link" onclick="goTo('account.html')">Account</button>
     <button class="sidebar-link" onclick="signOut()">Sign Out</button>
@@ -23,7 +22,9 @@
   <main class="app-shell with-nav">
     <header class="topbar">
       <button class="icon-btn" onclick="toggleSidebar()">☰</button>
-      <div class="topbar-title">STAMP AND STROLL</div>
+      <div class="topbar-title">
+        <img src="logo.png" alt="Stamp and Stroll Logo" class="logo-small" />
+      </div>
       <div class="topbar-spacer"></div>
     </header>
 
@@ -38,30 +39,11 @@
     <section class="card page-card">
       <h3>Profile Details</h3>
       <div class="info-list">
-        <div class="info-row">
-          <span class="info-label">Phone Number</span>
-          <span id="accountPhone" class="info-value">-</span>
-        </div>
-
-        <div class="info-row">
-          <span class="info-label">Language</span>
-          <span id="accountLanguage" class="info-value">English</span>
-        </div>
-
-        <div class="info-row">
-          <span class="info-label">Selected Mode</span>
-          <span id="accountMode" class="info-value">Not selected</span>
-        </div>
-
-        <div class="info-row">
-          <span class="info-label">Buggy Route</span>
-          <span id="accountRoute" class="info-value">-</span>
-        </div>
-
-        <div class="info-row">
-          <span class="info-label">Payment Status</span>
-          <span id="accountPayment" class="info-value">Pending</span>
-        </div>
+        <div class="info-row"><span class="info-label">Phone Number</span><span id="accountPhone" class="info-value">-</span></div>
+        <div class="info-row"><span class="info-label">Language</span><span id="accountLanguage" class="info-value">English</span></div>
+        <div class="info-row"><span class="info-label">Selected Mode</span><span id="accountMode" class="info-value">Not selected</span></div>
+        <div class="info-row"><span class="info-label">Buggy Route</span><span id="accountRoute" class="info-value">-</span></div>
+        <div class="info-row"><span class="info-label">Payment Status</span><span id="accountPayment" class="info-value">Pending</span></div>
       </div>
     </section>
 
