@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Queue Ticket | Stamp and Stroll</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body onload="loadQueuePage()">
+  <aside id="sidebar" class="sidebar hidden">
+    <div class="sidebar-header">
+      <h3>Menu</h3>
+      <button class="icon-btn" onclick="toggleSidebar()">✕</button>
+    </div>
+
+    <button class="sidebar-link" onclick="goTo('howto.html')">How to use Stamp and Stroll</button>
+    <button class="sidebar-link" onclick="goTo('account.html')">Account</button>
+    <button class="sidebar-link" onclick="signOut()">Sign Out</button>
+  </aside>
+
+  <div id="sidebarOverlay" class="overlay hidden" onclick="toggleSidebar()"></div>
+
+  <main class="app-shell with-nav">
+    <header class="topbar">
+      <button class="icon-btn" onclick="toggleSidebar()">☰</button>
+      <div class="topbar-title">STAMP AND STROLL</div>
+      <div class="topbar-spacer"></div>
+    </header>
+
+    <section class="card page-card">
+      <h2>Buggy Queue Ticket</h2>
+      <p class="muted">Proceed to ticket counter for payment or pay online.</p>
+
+      <div class="queue-ticket">
+        <div class="queue-label">Queue Number</div>
+        <div id="queueNumberDisplay" class="queue-number">089</div>
+        <div id="selectedRouteDisplay" class="muted">Selected route: Route 1</div>
+        <div id="paymentStatusDisplay" class="ticket-status pending">Status: Pending Payment</div>
+      </div>
+
+      <button class="secondary-btn" onclick="refreshQueueNumber()">
+        Refresh Queue Number
+      </button>
+
+      <button class="primary-btn" onclick="simulatePayment()">
+        After Payment
+      </button>
+    </section>
+
+    <nav class="bottom-nav">
+      <button class="nav-item" onclick="goTo('home.html')">
+        <span>🏠</span>
+        <small>Home</small>
+      </button>
+      <button class="nav-item active" onclick="openDynamicMapPage()">
+        <span>🗺️</span>
+        <small>Map</small>
+      </button>
+      <button class="nav-item" onclick="goTo('reviews.html')">
+        <span>⭐</span>
+        <small>Review</small>
+      </button>
+    </nav>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
